@@ -1,0 +1,88 @@
+@startuml
+!theme reddress-darkblue
+
+interface IAuthorizationSegmentsVerifier
+{
+  VerifyAsync(IReadOnlyList<ClaimsAuthorizationSegment> authorizationSegments)
+}
+
+class AuthorizationSegmentsVerifier extends IAuthorizationSegmentsVerifier
+
+class QueryMetadata
+{
+  string Sql
+  DbParameter[] Parameters 
+}
+
+interface IAuthorizationSegmentsSqlProvider
+{
+  QueryMetadata GetAuthorizationQueryMetadata(IReadOnlyList<ClaimsAuthorizationSegment> authorizationSegments, ref int parameterIndex);
+}
+
+IAuthorizationSegmentsSqlProvider -> QueryMetadata
+
+AuthorizationSegmentsVerifier -> IAuthorizationSegmentsSqlProvider
+
+abstract class AuthorizationSegmentSqlProviderBase extends IAuthorizationSegmentsSqlProvider
+{
+  DbParameter CreateParameter(string parameterName, AuthorizationSegmentEndpointWithValue segmentEndpoint)
+  string BuildMultiValueCriteriaExpression(IList<AuthorizationSegmentEndpointWithValue> endpointsWithValues, IList<DbParameter> parameters, ref int parameterIndex)
+}
+
+class PostgresAuthorizationSegmentSqlProvider extends AuthorizationSegmentSqlProviderBase
+class SqlServerAuthorizationSegmentSqlProvider extends AuthorizationSegmentSqlProviderBase
+
+interface IEdFiAuthorizationStrategy
+{
+  AuthorizeSingleItemAsync(IEnumerable<Claim> relevantClaims, EdFiAuthorizationContext authorizationContext)
+}
+class NamespaceBasedAuthorizationStrategy extends IEdFiAuthorizationStrategy
+class OwnershipBasedAuthorizationStrategy extends IEdFiAuthorizationStrategy
+class NoFurtherAuthorizationRequiredAuthorizationStrategy extends IEdFiAuthorizationStrategy
+
+class RelationshipAuthorizationStrategyBase extends IEdFiAuthorizationStrategy
+{
+  'AuthorizeSingleItemAsync(IEnumerable<Claim> relevantClaims, EdFiAuthorizationContext authorizationContext)
+  # BuildAuthorizationSegments(AuthorizationBuilder<TContextData> authorizationBuilder, string[] authorizationContextPropertyNames)
+}
+
+RelationshipAuthorizationStrategyBase -> IAuthorizationSegmentsVerifier
+
+'class RelationshipsWithEdOrgsAndPeople extends RelationshipAuthorizationStrategyBase
+'{
+'
+'}
+'
+'class RelationshipsWithEdOrgsOnly extends RelationshipAuthorizationStrategyBase
+'{
+'  void BuildAuthorizationSegments(AuthorizationBuilder<TContextData> authorizationBuilder, string[] authorizationContextPropertyNames)
+'}
+
+'class RelationshipsWithEdOrgsAndPeopleAuthorizationStrategy extends RelationshipAuthorizationStrategyBase
+'class RelationshipsWithEdOrgsOnlyAuthorizationStrategy extends RelationshipAuthorizationStrategyBase
+
+interface IEdFiAuthorizationProvider
+{
+  AuthorizeSingleItemAsync(EdFiAuthorizationContext authorizationContext)
+  IReadOnlyList<AuthorizationFilterDetails> GetAuthorizationFilters(EdFiAuthorizationContext authorizationContext)
+}
+
+class EdFiAuthorizationProvider extends IEdFiAuthorizationProvider
+
+EdFiAuthorizationProvider --* IEdFiAuthorizationStrategy
+
+abstract class RepositoryOperationAuthorizationDecoratorBase<T>
+RepositoryOperationAuthorizationDecoratorBase -> IEdFiAuthorizationProvider
+
+interface ICreateEntity<T>
+{
+  CreateAsync(TEntity entity, bool enforceOptimisticLock)
+}
+
+abstract class CreateEntityAuthorizationDecorator<T> extends RepositoryOperationAuthorizationDecoratorBase, ICreateEntity
+
+'CreateEntityAuthorizationDecorator --> ICreateEntity 
+
+class CreateEntity<TEntity> extends ICreateEntity
+
+@enduml

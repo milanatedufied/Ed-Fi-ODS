@@ -35,14 +35,11 @@ steps:
   inputs:
     nuGetServiceConnections: Ed-Fi-Alliance-Packages
 
-- task: NuGetRestore@1
-  inputs:
-    solution: '**/*.sln'
-    feed: 'https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/nuget/v3/index.json'
-  
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
+    feedsToUse: config
+    nugetConfigPath: 'nuget.config'
 
 - task: VSBuild@1
   inputs:

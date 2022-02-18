@@ -35,7 +35,7 @@ steps:
   inputs:
     targetType: filePath
     filePath: Ed-Fi-ODS-Implementation\Initialize-PowershellForDevelopment.ps1
-    script: 'initdev -NoDeploy -NoRebuild'
+    arguments: initdev -NoDeploy -NoRebuild
 
 - task: NuGetCommand@2
   inputs:

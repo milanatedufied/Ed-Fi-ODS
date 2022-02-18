@@ -40,7 +40,7 @@ steps:
 - task: PowerShell@2
   inputs:
     targetType: filePath
-    filePath: \Ed-Fi-ODS-Implementation\Initialize-PowershellForDevelopment.ps1
+    filePath: Ed-Fi-ODS-Implementation\Initialize-PowershellForDevelopment.ps1
     arguments: -NoDeploy -NoRebuild
 
 - task: VSBuild@1

@@ -31,15 +31,11 @@ steps:
 
 - task: NuGetToolInstaller@1
 
-- task: NuGetAuthenticate@0
-  inputs:
-    nuGetServiceConnections: Ed-Fi-Alliance-Packages
-
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
     feedsToUse: config
-    nugetConfigPath: 'nuget.config'
+    nugetConfigPath: 'Ed-Fi-ODS\nuget.config'
 
 - task: VSBuild@1
   inputs:

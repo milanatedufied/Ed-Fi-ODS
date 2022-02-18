@@ -28,7 +28,6 @@ variables:
 steps:
 - checkout: self
 - checkout: Implementation
-- checkout: ODS
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2

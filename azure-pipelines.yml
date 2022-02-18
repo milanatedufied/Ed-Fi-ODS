@@ -37,7 +37,7 @@ steps:
 
 - task: NuGetRestore@1
   inputs:
-    solution: 'build\ToolsetPackages\InternalToolset.csproj'
+    solution: '**/*.sln'
     feed: 'https://pkgs.dev.azure.com/ed-fi-alliance/Ed-Fi-Alliance-OSS/_packaging/EdFi/nuget/v3/index.json'
   
 - task: NuGetCommand@2

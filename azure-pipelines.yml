@@ -29,6 +29,9 @@ steps:
 - checkout: self
 - checkout: Implementation
 - task: NuGetToolInstaller@1
+  - task: NuGetAuthenticate@0
+    inputs:
+     nuGetServiceConnections: ${{ parameters.externalFeed }}
 
 
 - task: NuGetCommand@2
@@ -39,12 +42,6 @@ parameters:
   - name: externalFeed
     default: Ed-Fi-Alliance-Packages
     type: string
-
-steps:
-  - task: NuGetAuthenticate@0
-    inputs:
-     nuGetServiceConnections: ${{ parameters.externalFeed }}
-
 
 
 - task: VSBuild@1

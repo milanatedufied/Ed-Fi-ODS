@@ -35,7 +35,7 @@ steps:
   inputs:
     targetType: inline
     workingDirectory: Ed-Fi-ODS-Implementation
-    script: initdev -NoDeploy -NoRebuild
+    script: Ed-Fi-ODS-Implementation\Initialize-PowershellForDevelopment.ps1 initdev -NoDeploy -NoRebuild
 
 - task: NuGetCommand@2
   inputs:

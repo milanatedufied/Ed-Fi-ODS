@@ -7,9 +7,11 @@ resources:
   repositories:
   - repository: Implementation # The name used to reference this repository in the checkout step
     type: github
+    endpoint: milanatedufied
     name: milanatedufied/Ed-Fi-ODS-Implementation
   - repository: ODS
     type: github
+    endpoint: milanatedufied
     name: milanatedufied/Ed-Fi-ODS
 
 trigger:

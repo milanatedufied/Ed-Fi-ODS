@@ -26,23 +26,18 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- checkout: self
+- checkout: ODS
 - checkout: Implementation
-- task: NuGetToolInstaller@1
-  - task: NuGetAuthenticate@0
-    inputs:
-     nuGetServiceConnections: ${{ parameters.externalFeed }}
 
+- task: NuGetToolInstaller@1
+
+- task: NuGetAuthenticate@0
+  inputs:
+    nuGetServiceConnections: Ed-Fi-Alliance-Packages
 
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
-
-parameters: 
-  - name: externalFeed
-    default: Ed-Fi-Alliance-Packages
-    type: string
-
 
 - task: VSBuild@1
   inputs:

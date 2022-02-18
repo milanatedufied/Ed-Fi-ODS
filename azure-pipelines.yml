@@ -3,6 +3,15 @@
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
+resources:
+  repositories:
+  - repository: Implementation # The name used to reference this repository in the checkout step
+    type: github
+    name: milanatedufied/Ed-Fi-ODS-Implementation
+  - repository: ODS
+    type: github
+    name: milanatedufied/Ed-Fi-ODS
+
 trigger:
 - main
 
@@ -15,6 +24,9 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- checkout: self
+- checkout: Implementation
+- checkout: ODS
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2

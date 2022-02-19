@@ -9,15 +9,15 @@ resources:
     type: github
     endpoint: milanatedufied
     name: milanatedufied/Ed-Fi-ODS-Implementation
-    ref: main
+    ref: v5.3-Edufied
   - repository: ODS
     type: github
     endpoint: milanatedufied
     name: milanatedufied/Ed-Fi-ODS
-    ref: main
+    ref: v5.3-Edufied
 
 trigger:
-- main
+- v5.3-Edufied
 
 pool:
   vmImage: 'windows-latest'

@@ -65,4 +65,4 @@ steps:
     azureSubscription: 'Azure subscription(434bef23-7f24-49ef-848b-66c95f1cb749)'
     appType: 'webApp'
     WebAppName: 'edufied-edfi-api'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/WebApp.zip'
+    packageForLinux: '$(build.ArtifactStagingDirectory)/**/WebApp.zip'

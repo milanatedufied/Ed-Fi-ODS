@@ -26,11 +26,6 @@ ALTER TABLE [dbo].[ClaimSetResourceClaims]  WITH CHECK ADD  CONSTRAINT [FK_dbo.C
 REFERENCES [dbo].[ResourceClaims] ([ResourceClaimId])
 GO
 
---ALTER TABLE [dbo].[ClaimSets]  WITH CHECK ADD  CONSTRAINT [FK_dbo.ClaimSets_dbo.Applications_Application_ApplicationId] FOREIGN KEY([Application_ApplicationId])
---REFERENCES [dbo].[Applications] ([ApplicationId])
---ON DELETE CASCADE
---GO
-
 ALTER TABLE [dbo].[ResourceClaimAuthorizationMetadatas]  WITH CHECK ADD  CONSTRAINT [FK_dbo.ResourceClaimAuthorizationStrategies_dbo.Actions_Action_ActionId] FOREIGN KEY([Action_ActionId])
 REFERENCES [dbo].[Actions] ([ActionId])
 ON DELETE CASCADE

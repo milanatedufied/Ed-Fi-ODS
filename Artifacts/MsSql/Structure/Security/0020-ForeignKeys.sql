@@ -44,10 +44,10 @@ ALTER TABLE [dbo].[ResourceClaimAuthorizationMetadatas]  WITH CHECK ADD  CONSTRA
 REFERENCES [dbo].[ResourceClaims] ([ResourceClaimId])
 GO
 
-ALTER TABLE [dbo].[ResourceClaims]  WITH CHECK ADD  CONSTRAINT [FK_dbo.ResourceClaims_dbo.Applications_Application_ApplicationId] FOREIGN KEY([Application_ApplicationId])
-REFERENCES [dbo].[Applications] ([ApplicationId])
-ON DELETE CASCADE
-GO
+--ALTER TABLE [dbo].[ResourceClaims]  WITH CHECK ADD  CONSTRAINT [FK_dbo.ResourceClaims_dbo.Applications_Application_ApplicationId] FOREIGN KEY([Application_ApplicationId])
+--REFERENCES [dbo].[Applications] ([ApplicationId])
+--ON DELETE CASCADE
+--GO
 
 ALTER TABLE [dbo].[ResourceClaims]  WITH CHECK ADD  CONSTRAINT [FK_dbo.ResourceClaims_dbo.ResourceClaims_ParentResourceClaimId] FOREIGN KEY([ParentResourceClaimId])
 REFERENCES [dbo].[ResourceClaims] ([ResourceClaimId])

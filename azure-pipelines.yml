@@ -39,7 +39,6 @@ steps:
     workingDirectory: Ed-Fi-ODS-Implementation
     script: |
       Import-Module '$(System.DefaultWorkingDirectory)/Ed-Fi-ODS-Implementation/Initialize-PowershellForDevelopment.ps1'
-      help initdev -full
       initdev -NoRebuild -NoDeploy -InstallType YearSpecific
       
 - task: NuGetCommand@2

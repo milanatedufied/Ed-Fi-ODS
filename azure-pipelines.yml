@@ -34,8 +34,9 @@ steps:
 - task: PowerShell@2
   inputs:
     targetType: inline
-#    workingDirectory: Ed-Fi-ODS-Implementation
+    workingDirectory: Ed-Fi-ODS-Implementation
     script: |
+      Get-Module -ListAvailable
       Import-Module 'Ed-Fi-ODS-Implementation\Initialize-PowershellForDevelopment.ps1'
       initdev -NoDeploy -NoRebuild
 

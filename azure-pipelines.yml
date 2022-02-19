@@ -9,10 +9,12 @@ resources:
     type: github
     endpoint: milanatedufied
     name: milanatedufied/Ed-Fi-ODS-Implementation
+    ref: main
   - repository: ODS
     type: github
     endpoint: milanatedufied
     name: milanatedufied/Ed-Fi-ODS
+    ref: main
 
 trigger:
 - main

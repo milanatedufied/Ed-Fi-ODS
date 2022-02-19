@@ -38,8 +38,8 @@ steps:
     script: |
       Import-Module '$(System.DefaultWorkingDirectory)/Ed-Fi-ODS-Implementation/Initialize-PowershellForDevelopment.ps1'
       help initdev -full
-      initdev -NoDeploy -NoRebuild -InstallType 'YearSpecific' -Engine 'SQLServer'
-
+      initdev -NoRebuild -NoDeploy -InstallType YearSpecific
+      
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'

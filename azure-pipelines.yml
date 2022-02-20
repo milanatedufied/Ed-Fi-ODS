@@ -22,11 +22,6 @@ trigger:
 pool:
   vmImage: 'windows-latest'
 
-jobs:
-- job: CleanFiles
-  workspace:
-    clean:  all
-
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
@@ -43,8 +38,9 @@ steps:
     targetType: inline
     workingDirectory: Ed-Fi-ODS-Implementation
     script: |
+      del '$(System.DefaultWorkingDirectory)/Ed-Fi-ODS-Implementation/Plugin'
       Import-Module '$(System.DefaultWorkingDirectory)/Ed-Fi-ODS-Implementation/Initialize-PowershellForDevelopment.ps1'
-      initdev -NoDeploy -InstallType YearSpecific
+      initdev -NoRebuild -NoDeploy -InstallType YearSpecific
       
 - task: NuGetCommand@2
   inputs:

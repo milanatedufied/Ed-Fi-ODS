@@ -41,8 +41,10 @@ steps:
       dir Plugin
       del Plugin -Recurse
       md Plugin
+      dir Plugin
       Import-Module '$(System.DefaultWorkingDirectory)/Ed-Fi-ODS-Implementation/Initialize-PowershellForDevelopment.ps1'
       initdev -NoRebuild -NoDeploy -InstallType YearSpecific
+      dir Plugin
       
 - task: NuGetCommand@2
   inputs:

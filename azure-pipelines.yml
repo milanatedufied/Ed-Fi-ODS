@@ -38,7 +38,7 @@ steps:
     targetType: inline
     workingDirectory: Ed-Fi-ODS-Implementation
     script: |
-      del '$(System.DefaultWorkingDirectory)/Ed-Fi-ODS-Implementation/Plugin'
+      del '$(System.DefaultWorkingDirectory)/Ed-Fi-ODS-Implementation/Plugin' -Recurse
       Import-Module '$(System.DefaultWorkingDirectory)/Ed-Fi-ODS-Implementation/Initialize-PowershellForDevelopment.ps1'
       initdev -NoRebuild -NoDeploy -InstallType YearSpecific
       

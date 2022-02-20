@@ -22,6 +22,11 @@ trigger:
 pool:
   vmImage: 'windows-latest'
 
+jobs:
+- job: CleanFiles
+  workspace:
+    clean:  all
+
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'

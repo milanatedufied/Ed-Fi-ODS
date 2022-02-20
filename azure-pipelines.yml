@@ -39,7 +39,7 @@ steps:
     workingDirectory: Ed-Fi-ODS-Implementation
     script: |
       Import-Module '$(System.DefaultWorkingDirectory)/Ed-Fi-ODS-Implementation/Initialize-PowershellForDevelopment.ps1'
-      initdev -NoRebuild -NoDeploy -InstallType YearSpecific
+      initdev -NoDeploy -InstallType YearSpecific
       
 - task: NuGetCommand@2
   inputs:
